@@ -5,6 +5,10 @@ using Cinemachine;
 
 public class ShoulderController : MonoBehaviour
 {
+    public GameObject normalCamera;
+
+    public GameObject aimCamera;
+    
     private CharacterController _controller;
 
     private float _horizontal;
@@ -43,6 +47,8 @@ public class ShoulderController : MonoBehaviour
 
     [SerializeField] private AxisState yAxis;
 
+    
+
 
 
     // Start is called before the first frame update
@@ -60,6 +66,18 @@ public class ShoulderController : MonoBehaviour
         _vertical = Input.GetAxisRaw("Vertical");
         Jump();
         Movement();
+
+        if(Input.GetButton("Fire2"))
+        {
+            normalCamera.SetActive(false);
+            aimCamera.SetActive(true);
+        }
+
+        else
+        {
+            normalCamera.SetActive(true);
+            aimCamera.SetActive(false);
+        }
     }
 
     void Jump()
@@ -96,14 +114,12 @@ public class ShoulderController : MonoBehaviour
         if(direction != Vector3.zero)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _camera.eulerAngles.y;
-            float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-
-            transform.rotation = Quaternion.Euler(0, smoothAngle, 0);
 
             Vector3 moveDirection = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
 
             _controller.Move(moveDirection.normalized * _playerSpeed * Time.deltaTime);
         }
-
     }
+
+    
 }
