@@ -25,7 +25,7 @@ public class FPSControler : MonoBehaviour
     private bool _isGrounded;
 
     private float _gravity = -9.81f;
-    
+
     private Vector3 _playerGravity;
 
     // Start is called before the first frame update
@@ -39,6 +39,7 @@ public class FPSControler : MonoBehaviour
     void Update()
     {
         Movement();
+        Jump();
     }
 
     void Movement()
