@@ -36,11 +36,12 @@ public class TPSController : MonoBehaviour
     private bool _isGrounded;
 
     private Transform _camera;
-
+     private Animator _animator;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _controller = GetComponent<CharacterController>();
+        _animator = GetComponentInChildren<Animator>();
         _camera = Camera.main.transform;
     }
 
@@ -70,6 +71,10 @@ public class TPSController : MonoBehaviour
         if(direction != Vector3.zero)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _camera.eulerAngles.y;
+
+            _animator.SetFloat("VelX", _horizontal);
+            _animator.SetFloat("VelZ", _vertical);
+
             float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
             transform.rotation = Quaternion.Euler(0, smoothAngle, 0);
