@@ -36,7 +36,8 @@ public class TPSController : MonoBehaviour
     private bool _isGrounded;
 
     private Transform _camera;
-     private Animator _animator;
+    private Animator _animator;
+    public int shootDamage = 2;
     // Start is called before the first frame update
     void Awake()
     {
@@ -157,10 +158,17 @@ public class TPSController : MonoBehaviour
         }*/
 
         RaycastHit hit;
-        if(Physics.Raycast(transform,position, transform.forward, out hit, 10))
+        if(Physics.Raycast(transform.position, transform.forward, out hit, 10))
         {
             Debug.Log(hit.transform.name);
             Debug.Log(hit.transform.position);
+            //Destroy(hit.transform.gameObject);
+            Box caja = hit.transform.GetComponent<Box>();
+
+            if(caja != null)
+            {
+                caja.TakeDamage(shootDamage);
+            }
         }
     }
 }
