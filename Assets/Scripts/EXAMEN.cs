@@ -148,11 +148,11 @@ public class EXAMEN : MonoBehaviour
  {
     if(hit.transform.gameObject.tag == "Ejemplo1")
     {
-        Debug.Log("Prueba")
+        Debug.Log("Prueba");
     }
 
     else if(hit.transform.gameObject.tag == "Ejemplo2")
     {
-        Destroy(hit.transform.gameObject)
+        Destroy(hit.transform.gameObject);
     }
  }
