@@ -17,7 +17,7 @@ public class TPSController : MonoBehaviour
 
     [SerializeField] private float _pushForce = 5;
 
-     [SerializeField] private float _throwForce = 10;
+    [SerializeField] private float _throwForce = 10;
 
     private float _gravity = -9.81f;
 
@@ -103,7 +103,7 @@ public class TPSController : MonoBehaviour
     {
         Vector3 direction = new Vector3(_horizontal, 0, _vertical);
 
-        _animator.SetFloat("VelZ", 0);
+        _animator.SetFloat("VelX", 0);
         _animator.SetFloat("VelZ", direction.magnitude);
 
         if(direction != Vector3.zero)
@@ -151,6 +151,7 @@ public class TPSController : MonoBehaviour
     void Jump()
     {
         _isGrounded = Physics.CheckSphere(_sensorPosition.position, _sensorRadius, _groundLayer);
+        //_animator.Setbool("isJumping",! _isJumping);
 
         //Groundsensor version Raycast
         /*_isGrounded = Physics.Raycast(_sensorPosition.position, Vector3.down,_sensorRadius, _groundLayer);

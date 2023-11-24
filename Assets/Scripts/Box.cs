@@ -11,7 +11,7 @@ public class Box : MonoBehaviour
         vida -= damage;
         if (vida <= 0)
         {
-            //Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }
